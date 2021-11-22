@@ -1,12 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import Counter from './Components/Counter'
+import CustomeImage from './Components/CustomeImage'
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Counter />
+      <Text>Hello</Text>
+      <CustomeImage />
     </View>
   );
 
@@ -17,6 +18,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    padding: 50,
   }
 });
