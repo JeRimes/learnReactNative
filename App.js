@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, TextInput } from 'react-native';
-import UselessTextInput from './Components/Square'
+import UselessTextInput from './Components/ListPays'
 
 export default function App() {
   return (

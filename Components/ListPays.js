@@ -5,19 +5,32 @@ import { View, StyleSheet, TextInput, Button, Text, FlatList, TouchableOpacity }
 const UselessTextInput = () => {
     const [text, setText] = useState("");
 
-    const [pays, setPays, onPress] = useState([]);
+    const [pays, setPays] = useState([]);
 
     const addTip = (value) => {
+        if (pays == null) {
+            var item = { id: '1', title: value, stroke: false };
+            return setPays([item]);
+        }
         var item = { id: (pays.length + 1).toString(), title: value, stroke: false };
         setPays([...pays, item]);
     }
-    // const Item = ({ item, onPress, backgroundColor, textColor }) => (
-    //     <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-    //         <Text style={styles.item}>{item.title}</Text>
-    //     </TouchableOpacity>
-    // );
-    // const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
-    // const color = item.id === selectedId ? 'white' : 'black';
+    const pressHandler = (id) => {
+        var tab = pays;
+        console.log(tab);
+        if (tab[id - 1] != null) {
+            if (tab[id - 1].stroke == false) {
+                tab[id - 1].stroke = true;
+            }
+            else {
+                tab[id - 1].stroke = false;
+            }
+            setPays([...pays]);
+        }
+
+    }
+
+
     return (
         <View>
             <TextInput
@@ -25,7 +38,6 @@ const UselessTextInput = () => {
                 onChangeText={(val) => setText(val)}
                 value={text}
             />
-            <Text>{text}</Text>
             <Button
                 onPress={() =>
                     addTip(text)
@@ -36,7 +48,9 @@ const UselessTextInput = () => {
             <FlatList
                 data={pays}
                 renderItem={({ item }) =>
-                    <Text style={styles.item}>{item.title}</Text>
+                    <TouchableOpacity onPress={() => pressHandler(item.id)}>
+                        <Text style={item.stroke ? styles.stroke : styles.item}>{item.title}</Text>
+                    </TouchableOpacity>
                 }
                 keyExtractor={(item) => item.id}
             />
@@ -55,9 +69,18 @@ const styles = StyleSheet.create({
         marginTop: 10,
         fontSize: 20,
         textAlign: 'center',
-        backgroundColor: "red",
+        backgroundColor: "green",
         color: 'white',
         padding: 10
+    },
+    stroke: {
+        marginTop: 10,
+        fontSize: 20,
+        textAlign: 'center',
+        backgroundColor: "red",
+        color: 'white',
+        padding: 10,
+        textDecorationLine: 'line-through'
     }
 });
 
