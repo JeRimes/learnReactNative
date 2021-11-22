@@ -1,13 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import CustomeImage from './Components/CustomeImage'
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Hello</Text>
+
+    <View style={styles.main}>
       <CustomeImage />
+      <Text style={styles.footer}>footer</Text>
     </View>
   );
 
@@ -15,10 +16,18 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    padding: 50,
-  }
+    textAlign: 'center',
+  },
+  footer: {
+    backgroundColor: 'grey',
+    textAlign: 'center',
+    padding: 10
+  },
+  main: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+
 });
